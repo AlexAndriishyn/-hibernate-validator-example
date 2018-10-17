@@ -1,0 +1,1 @@
+<a href="http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#preface">Hibernate-validator</a>

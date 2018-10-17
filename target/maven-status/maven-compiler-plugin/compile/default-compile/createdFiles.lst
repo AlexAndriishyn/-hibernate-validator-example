@@ -1,0 +1,5 @@
+com/alex/example/model/Car.class
+com/alex/example/model/Engine.class
+com/alex/example/CarService.class
+com/alex/example/CarRepository.class
+com/alex/example/Main.class
