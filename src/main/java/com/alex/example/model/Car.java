@@ -1,5 +1,7 @@
 package com.alex.example.model;
 
+import com.alex.example.model.validation.CarConstraint;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -9,6 +11,7 @@ import javax.validation.constraints.Size;
 /**
  * Created by alex.
  */
+@CarConstraint
 @Entity
 public class Car {
 
@@ -23,7 +26,10 @@ public class Car {
     @Size(min = 2, max = 14)
     private String licensePlate;
 
+    @NotNull
     @Valid
+    @OneToOne(targetEntity = Engine.class)
+    @JoinColumn(name = "id")
     private Engine engine;
 
     @Min(2)
@@ -31,6 +37,10 @@ public class Car {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getManufacturer() {

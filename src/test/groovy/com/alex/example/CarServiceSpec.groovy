@@ -1,5 +1,7 @@
 package com.alex.example
 
+import com.alex.example.model.Car
+import com.alex.example.model.CarRepository
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
@@ -16,6 +18,6 @@ class CarServiceSpec extends Specification {
 
     def 'validate'() {
         expect:
-        carService.createCar()
+        carService.createCar(new Car())
     }
 }

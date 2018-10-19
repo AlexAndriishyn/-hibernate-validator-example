@@ -1,7 +1,7 @@
 package com.alex.example;
 
 import com.alex.example.model.Car;
-import com.alex.example.model.Engine;
+import com.alex.example.model.CarRepository;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -17,35 +17,31 @@ import java.util.Set;
 public class CarService {
 
     private final CarRepository carRepository;
-    private final ValidatorFactory validatorFactory;
+//    private final ValidatorFactory validatorFactory;
+    private final Validator validator;
 
     @Inject
     public CarService(
         CarRepository carRepository,
-        ValidatorFactory validatorFactory
+//        ValidatorFactory validatorFactory,
+        Validator validator
     ) {
         this.carRepository = carRepository;
-        this.validatorFactory = validatorFactory;
+//        this.validatorFactory = validatorFactory;
+        this.validator = validator;
     }
 
-    public Car createCar() {
-        Car car = new Car();
-
-        car.setManufacturer("alex");
-        car.setSeatCount(1);
-        car.setLicensePlate("iscool");
-        car.setEngine(new Engine());
-
+    public Car createCar(Car car) {
         validate(car);
 
         return carRepository.save(car);
     }
 
     private void validate(Car car) {
-        Validator validator = validatorFactory.getValidator();
-
         Set<ConstraintViolation<Car>> constraintViolations = validator.validate(car);
 
-        System.out.println(constraintViolations);
+        for (ConstraintViolation<Car> constraintViolation: constraintViolations) {
+            System.out.println(constraintViolation.getMessage());
+        }
     }
 }

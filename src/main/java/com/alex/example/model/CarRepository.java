@@ -1,4 +1,4 @@
-package com.alex.example;
+package com.alex.example.model;
 
 import com.alex.example.model.Car;
 import org.springframework.data.jpa.repository.JpaRepository;

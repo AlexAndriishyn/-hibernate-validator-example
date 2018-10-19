@@ -1,0 +1,7 @@
+com:
+  alex:
+    example:
+      model:
+        validation:
+          carconstraint:
+            message: "hello ${name}"
